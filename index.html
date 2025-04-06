@@ -44,17 +44,79 @@
             animation: heroFadeIn 1s ease forwards;
             animation-delay: 0.3s;
         }
-        /* Mobile menu */
+        /* Section Dividers */
         
-        .mobile-menu {
-            display: none;
+        .section-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+            margin: 2rem 0;
+        }
+        /* Go to top button */
+        
+        .go-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
         }
         
-        @media (max-width: 768px) {
-            .desktop-menu {
+        .go-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .go-to-top:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+        /* Desktop Navigation */
+        
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+                gap: 2.5rem;
+                align-items: center;
+            }
+            .nav-links a {
+                font-size: 1.1rem;
+                position: relative;
+                padding: 0.5rem 0;
+            }
+            .nav-links a::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 2px;
+                background: currentColor;
+                transition: width 0.3s ease;
+            }
+            .nav-links a:hover::after {
+                width: 100%;
+            }
+        }
+        /* Mobile menu */
+        
+        @media (max-width: 767px) {
+            .nav-links {
                 display: none;
             }
-            .mobile-menu {
+            .mobile-menu-btn {
                 display: block;
             }
             .menu-items {
@@ -69,11 +131,6 @@
             }
             .menu-items.active {
                 display: block;
-            }
-            .menu-items a {
-                display: block;
-                padding: 0.75rem;
-                text-align: center;
             }
         }
         /* Performance optimizations */
@@ -92,31 +149,31 @@
 
 <body class="bg-black text-white">
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-sm">
-        <div class="container mx-auto px-4 py-4">
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
+        <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <a href="#" class="text-xl font-bold flex items-center hover:text-gray-300 transition z-50">
+                <a href="#" class="text-xl font-bold flex items-center hover:text-gray-300 transition">
                     Hassan's Vision
                     <svg class="w-6 h-6 ml-2" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                 </a>
-                <button class="mobile-menu-btn p-2 z-50 md:hidden" onclick="toggleMenu()">
+                <button class="mobile-menu-btn p-2 md:hidden" onclick="toggleMenu()">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
-                <div class="desktop-menu hidden md:flex space-x-6">
+                <div class="nav-links hidden md:flex">
                     <a href="#about" class="hover:text-gray-300 transition">About</a>
                     <a href="#categories" class="hover:text-gray-300 transition">Categories</a>
                     <a href="#profiles" class="hover:text-gray-300 transition">Profiles</a>
                     <a href="#contact" class="hover:text-gray-300 transition">Contact</a>
                 </div>
                 <div class="menu-items" id="mobileMenu">
-                    <a href="#about" class="hover:text-gray-300 transition">About</a>
-                    <a href="#categories" class="hover:text-gray-300 transition">Categories</a>
-                    <a href="#profiles" class="hover:text-gray-300 transition">Profiles</a>
-                    <a href="#contact" class="hover:text-gray-300 transition">Contact</a>
+                    <a href="#about" class="block py-2 hover:text-gray-300 transition">About</a>
+                    <a href="#categories" class="block py-2 hover:text-gray-300 transition">Categories</a>
+                    <a href="#profiles" class="block py-2 hover:text-gray-300 transition">Profiles</a>
+                    <a href="#contact" class="block py-2 hover:text-gray-300 transition">Contact</a>
                 </div>
             </div>
         </div>
@@ -131,6 +188,8 @@
             <a href="#categories" class="bg-white text-black px-8 py-3 rounded-full hover:bg-gray-200 transition">View My Work</a>
         </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- About Section -->
     <section id="about" class="py-32 px-8 bg-black">
@@ -148,6 +207,8 @@
             </div>
         </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- Categories Section -->
     <section id="categories" class="min-h-screen py-16 md:py-32 px-4 md:px-8 bg-gradient-to-b from-black to-gray-900">
@@ -350,6 +411,8 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Profiles & Work Section -->
     <section id="profiles" class="py-32 px-8 bg-gray-900">
         <div class="container mx-auto max-w-6xl">
@@ -406,6 +469,8 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Contact Section -->
     <section id="contact" class="py-20 px-4">
         <div class="container mx-auto max-w-3xl text-center">
@@ -434,10 +499,19 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Footer -->
     <footer class="py-8 text-center text-gray-400">
         <p>&copy; 2024 Photography Portfolio. All rights reserved.</p>
     </footer>
+
+    <!-- Go to top button -->
+    <button class="go-to-top" id="goToTop" onclick="scrollToTop()">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
@@ -500,6 +574,24 @@
                 mobileMenu.classList.remove('active');
             }
         });
+
+        // Go to top button functionality
+        const goToTopButton = document.getElementById('goToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                goToTopButton.classList.add('visible');
+            } else {
+                goToTopButton.classList.remove('visible');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
     </script>
 </body>
 
