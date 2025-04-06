@@ -1,0 +1,204 @@
+/* Custom styles */
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+
+/* Hero section overlay */
+
+.hero-overlay {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7));
+}
+
+
+/* Gallery image hover effect */
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-item img {
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+
+/* Lightbox customization */
+
+.lb-data .lb-caption {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+.lb-data .lb-number {
+    font-size: 14px;
+    color: #999;
+}
+
+
+/* Navigation active state */
+
+nav a.active {
+    color: #fff;
+    font-weight: 600;
+}
+
+
+/* Responsive adjustments */
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .hero p {
+        font-size: 1.1rem;
+    }
+}
+
+
+/* Custom scrollbar */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+
+/* Performance optimizations */
+
+* {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+
+/* Optimize image rendering */
+
+img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+
+/* Smooth scrolling */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Optimize transitions */
+
+.transition-all {
+    will-change: transform, opacity;
+}
+
+
+/* Gallery container optimization */
+
+#gallery .grid {
+    contain: content;
+    will-change: transform;
+}
+
+
+/* Lightbox optimizations */
+
+.lb-dataContainer {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.lb-outerContainer {
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+
+/* Category Section Animations */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+
+/* Hover Effects */
+
+.category-section img {
+    transition: transform 0.5s ease-in-out;
+}
+
+.category-section:hover img {
+    transform: scale(1.05);
+}
+
+
+/* Gradient Overlays */
+
+.category-section .gradient-overlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
+    transition: opacity 0.3s ease;
+}
+
+.category-section:hover .gradient-overlay {
+    opacity: 0.8;
+}
+
+
+/* Smooth Scrolling */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Responsive Adjustments */
+
+@media (max-width: 768px) {
+    .category-section {
+        padding: 2rem 0;
+    }
+    .category-section img {
+        margin-top: 2rem;
+    }
+}
+
+
+/* Performance Optimizations */
+
+.category-section {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
