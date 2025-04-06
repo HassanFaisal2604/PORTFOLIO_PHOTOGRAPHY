@@ -44,6 +44,38 @@
             animation: heroFadeIn 1s ease forwards;
             animation-delay: 0.3s;
         }
+        /* Mobile menu */
+        
+        .mobile-menu {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .desktop-menu {
+                display: none;
+            }
+            .mobile-menu {
+                display: block;
+            }
+            .menu-items {
+                display: none;
+                position: fixed;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 1rem;
+                backdrop-filter: blur(8px);
+            }
+            .menu-items.active {
+                display: block;
+            }
+            .menu-items a {
+                display: block;
+                padding: 0.75rem;
+                text-align: center;
+            }
+        }
         /* Performance optimizations */
         
         * {
@@ -63,13 +95,24 @@
     <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-sm">
         <div class="container mx-auto px-4 py-4">
             <div class="flex justify-between items-center">
-                <a href="https://www.instagram.com/hassansvision/" class="text-xl font-bold flex items-center hover:text-gray-300 transition">
+                <a href="#" class="text-xl font-bold flex items-center hover:text-gray-300 transition z-50">
                     Hassan's Vision
                     <svg class="w-6 h-6 ml-2" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                 </a>
-                <div class="space-x-6">
+                <button class="mobile-menu-btn p-2 z-50 md:hidden" onclick="toggleMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+                <div class="desktop-menu hidden md:flex space-x-6">
+                    <a href="#about" class="hover:text-gray-300 transition">About</a>
+                    <a href="#categories" class="hover:text-gray-300 transition">Categories</a>
+                    <a href="#profiles" class="hover:text-gray-300 transition">Profiles</a>
+                    <a href="#contact" class="hover:text-gray-300 transition">Contact</a>
+                </div>
+                <div class="menu-items" id="mobileMenu">
                     <a href="#about" class="hover:text-gray-300 transition">About</a>
                     <a href="#categories" class="hover:text-gray-300 transition">Categories</a>
                     <a href="#profiles" class="hover:text-gray-300 transition">Profiles</a>
@@ -82,9 +125,9 @@
     <!-- Hero Section -->
     <section class="h-screen flex flex-col justify-center items-center text-center bg-cover bg-center relative hero optimize-rendering" style="background-image: url('./images/picofme.webp')">
         <div class="absolute inset-0 bg-black/60"></div>
-        <div class="relative z-10">
-            <h1 class="text-6xl font-bold mb-4">Hassan Faisal</h1>
-            <p class="text-xl italic mb-8">Photographer & Visual Storyteller</p>
+        <div class="relative z-10 px-4">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Hassan Faisal</h1>
+            <p class="text-lg md:text-xl italic mb-8">Photographer & Visual Storyteller</p>
             <a href="#categories" class="bg-white text-black px-8 py-3 rounded-full hover:bg-gray-200 transition">View My Work</a>
         </div>
     </section>
@@ -107,26 +150,26 @@
     </section>
 
     <!-- Categories Section -->
-    <section id="categories" class="min-h-screen py-32 px-8 bg-gradient-to-b from-black to-gray-900">
+    <section id="categories" class="min-h-screen py-16 md:py-32 px-4 md:px-8 bg-gradient-to-b from-black to-gray-900">
         <div class="container mx-auto max-w-7xl">
-            <h2 class="text-4xl font-bold text-center mb-16">Photography Categories</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16">Photography Categories</h2>
 
             <!-- Professional Photography -->
-            <div class="category-section mb-32 scroll-mt-32" id="professional">
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/2">
-                        <h3 class="text-3xl font-bold mb-6 text-blue-400">Professional Photography</h3>
-                        <p class="text-gray-300 mb-8 leading-relaxed">
+            <div class="category-section mb-16 md:mb-32 scroll-mt-24" id="professional">
+                <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-blue-400">Professional Photography</h3>
+                        <p class="text-gray-300 mb-6 md:mb-8 leading-relaxed">
                             Capturing the essence of professional environments and corporate events. From business portraits to corporate gatherings, I document the professional world with precision and style.
                         </p>
-                        <button onclick="toggleGallery('professional')" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-300">
+                        <button onclick="toggleGallery('professional')" class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-300">
                             View Collection
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
                     </div>
-                    <div class="md:w-1/2 relative">
+                    <div class="w-full md:w-1/2 relative">
                         <div class="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden transform hover:scale-105 transition duration-500">
                             <img src="./images/gallery/prof/DSC_4712.webp" alt="Professional Photography" class="object-cover w-full h-full">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -134,8 +177,8 @@
                     </div>
                 </div>
                 <!-- Professional Collection -->
-                <div id="professional-collection" class="hidden mt-12">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div id="professional-collection" class="collection-content">
+                    <div class="collection-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                         <a href="./images/gallery/prof/DSC_4712.webp" data-lightbox="professional" class="gallery-item">
                             <img src="./images/gallery/prof/DSC_4712.webp" alt="Professional Photography" class="w-full aspect-[3/2] object-cover rounded-lg">
                         </a>
@@ -171,21 +214,21 @@
             </div>
 
             <!-- Nature Photography -->
-            <div class="category-section mb-32 scroll-mt-32" id="nature">
-                <div class="flex flex-col md:flex-row-reverse items-center gap-12">
-                    <div class="md:w-1/2">
-                        <h3 class="text-3xl font-bold mb-6 text-green-400">Nature Photography</h3>
-                        <p class="text-gray-300 mb-8 leading-relaxed">
+            <div class="category-section mb-16 md:mb-32 scroll-mt-24" id="nature">
+                <div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-green-400">Nature Photography</h3>
+                        <p class="text-gray-300 mb-6 md:mb-8 leading-relaxed">
                             Exploring the beauty of the natural world through my lens. From breathtaking landscapes to intimate wildlife moments, I capture nature's most stunning scenes.
                         </p>
-                        <button onclick="toggleGallery('nature')" class="inline-flex items-center px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition duration-300">
+                        <button onclick="toggleGallery('nature')" class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 bg-green-600 text-white rounded-full hover:bg-green-700 transition duration-300">
                             View Collection
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
                     </div>
-                    <div class="md:w-1/2 relative">
+                    <div class="w-full md:w-1/2 relative">
                         <div class="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden transform hover:scale-105 transition duration-500">
                             <img src="./images/gallery/nature/n2.webp" alt="Nature Photography" class="object-cover w-full h-full">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -193,8 +236,8 @@
                     </div>
                 </div>
                 <!-- Nature Collection -->
-                <div id="nature-collection" class="hidden mt-12">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div id="nature-collection" class="collection-content">
+                    <div class="collection-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                         <a href="./images/gallery/nature/n1.webp" data-lightbox="nature" class="gallery-item">
                             <img src="./images/gallery/nature/n1.webp" alt="Nature Photography" class="w-full aspect-[3/2] object-cover rounded-lg">
                         </a>
@@ -215,21 +258,21 @@
             </div>
 
             <!-- Portrait Photography -->
-            <div class="category-section mb-32 scroll-mt-32" id="portrait">
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/2">
-                        <h3 class="text-3xl font-bold mb-6 text-purple-400">Portrait Photography</h3>
-                        <p class="text-gray-300 mb-8 leading-relaxed">
+            <div class="category-section mb-16 md:mb-32 scroll-mt-24" id="portrait">
+                <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-purple-400">Portrait Photography</h3>
+                        <p class="text-gray-300 mb-6 md:mb-8 leading-relaxed">
                             Capturing the essence of personality and emotion in every portrait. From professional headshots to creative portraits, I bring out the unique character of each subject.
                         </p>
-                        <button onclick="toggleGallery('portrait')" class="inline-flex items-center px-6 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition duration-300">
+                        <button onclick="toggleGallery('portrait')" class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 bg-purple-600 text-white rounded-full hover:bg-purple-700 transition duration-300">
                             View Collection
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
                     </div>
-                    <div class="md:w-1/2 relative">
+                    <div class="w-full md:w-1/2 relative">
                         <div class="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden transform hover:scale-105 transition duration-500">
                             <img src="./images/gallery/Portrait/DSC_4816.webp" alt="Portrait Photography" class="object-cover w-full h-full">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -237,8 +280,8 @@
                     </div>
                 </div>
                 <!-- Portrait Collection -->
-                <div id="portrait-collection" class="hidden mt-12">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div id="portrait-collection" class="collection-content">
+                    <div class="collection-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                         <a href="./images/gallery/Portrait/DSC_4816.webp" data-lightbox="portrait" class="gallery-item">
                             <img src="./images/gallery/Portrait/DSC_4816.webp" alt="Portrait Photography" class="w-full aspect-[3/2] object-cover rounded-lg">
                         </a>
@@ -259,21 +302,21 @@
             </div>
 
             <!-- Product Photography -->
-            <div class="category-section scroll-mt-32" id="product">
-                <div class="flex flex-col md:flex-row-reverse items-center gap-12">
-                    <div class="md:w-1/2">
-                        <h3 class="text-3xl font-bold mb-6 text-yellow-400">Product Photography</h3>
-                        <p class="text-gray-300 mb-8 leading-relaxed">
+            <div class="category-section scroll-mt-24" id="product">
+                <div class="flex flex-col md:flex-row-reverse items-center gap-8 md:gap-12">
+                    <div class="w-full md:w-1/2">
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4 md:mb-6 text-yellow-400">Product Photography</h3>
+                        <p class="text-gray-300 mb-6 md:mb-8 leading-relaxed">
                             Showcasing products in their best light. From e-commerce to advertising, I create compelling product images that highlight features and drive engagement.
                         </p>
-                        <button onclick="toggleGallery('product')" class="inline-flex items-center px-6 py-3 bg-yellow-600 text-white rounded-full hover:bg-yellow-700 transition duration-300">
+                        <button onclick="toggleGallery('product')" class="w-full md:w-auto inline-flex items-center justify-center px-6 py-3 bg-yellow-600 text-white rounded-full hover:bg-yellow-700 transition duration-300">
                             View Collection
-                            <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
                     </div>
-                    <div class="md:w-1/2 relative">
+                    <div class="w-full md:w-1/2 relative">
                         <div class="aspect-w-16 aspect-h-9 rounded-2xl overflow-hidden transform hover:scale-105 transition duration-500">
                             <img src="./images/gallery/Product/DSC_0764.webp" alt="Product Photography" class="object-cover w-full h-full">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -281,8 +324,8 @@
                     </div>
                 </div>
                 <!-- Product Collection -->
-                <div id="product-collection" class="hidden mt-12">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div id="product-collection" class="collection-content">
+                    <div class="collection-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
                         <a href="./images/gallery/Product/DSC_0764.webp" data-lightbox="product" class="gallery-item">
                             <img src="./images/gallery/Product/DSC_0764.webp" alt="Product Photography" class="w-full aspect-[3/2] object-cover rounded-lg">
                         </a>
@@ -402,11 +445,11 @@
         function toggleGallery(category) {
             const collection = document.getElementById(`${category}-collection`);
             const button = event.currentTarget;
-            const isHidden = collection.classList.contains('hidden');
+            const isHidden = !collection.classList.contains('active');
 
             // Hide all collections first
             document.querySelectorAll('[id$="-collection"]').forEach(el => {
-                el.classList.add('hidden');
+                el.classList.remove('active');
             });
 
             // Reset all buttons
@@ -416,10 +459,47 @@
 
             // Toggle the clicked collection
             if (isHidden) {
-                collection.classList.remove('hidden');
+                collection.classList.add('active');
                 button.querySelector('svg').style.transform = 'rotate(180deg)';
+
+                // Scroll to collection after a small delay to ensure animation has started
+                setTimeout(() => {
+                    collection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                        inline: 'nearest'
+                    });
+                }, 100);
             }
         }
+
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (mobileMenu) {
+                mobileMenu.classList.toggle('active');
+            }
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.menu-items a').forEach(link => {
+            link.addEventListener('click', () => {
+                const mobileMenu = document.getElementById('mobileMenu');
+                if (mobileMenu) {
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileMenuButton = document.querySelector('.mobile-menu');
+            if (mobileMenu && mobileMenuButton &&
+                !mobileMenuButton.contains(e.target) &&
+                !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+            }
+        });
     </script>
 </body>
 
