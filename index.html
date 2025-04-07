@@ -109,6 +109,12 @@
             .nav-links a:hover::after {
                 width: 100%;
             }
+            .mobile-menu-btn {
+                display: none;
+            }
+            .menu-items {
+                display: none;
+            }
         }
         /* Mobile menu */
         
@@ -128,6 +134,7 @@
                 background: rgba(0, 0, 0, 0.95);
                 padding: 1rem;
                 backdrop-filter: blur(8px);
+                z-index: 50;
             }
             .menu-items.active {
                 display: block;
@@ -149,35 +156,32 @@
 
 <body class="bg-black text-white">
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-sm border-b border-white/10">
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-sm border-b border-white/5">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <a href=" https://www.instagram.com/hassansvision/ " class="text-xl font-bold flex items-center hover:text-gray-300 transition ">
+                <a href="https://www.instagram.com/hassansvision/" class="text-xl font-bold flex items-center hover:text-gray-300 transition">
                     Hassan's Vision
-                    <svg class="w-6 h-6 ml-2 " fill="currentColor " viewBox="0 0 24 24 ">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849
-                    0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618
-                    6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403
-                    0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645
-                    1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z "/>
+                    <svg class="w-6 h-6 ml-2" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645
+                    1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                     </svg>
                 </a>
-                <button class="mobile-menu-btn p-2 md:hidden " onclick="toggleMenu() ">
-                    <svg class="w-6 h-6 " fill="none " stroke="currentColor " viewBox="0 0 24 24 ">
-                        <path stroke-linecap="round " stroke-linejoin="round " stroke-width="2 " d="M4 6h16M4 12h16M4 18h16 "/>
+                <button class="mobile-menu-btn p-2" onclick="toggleMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
-                <div class="nav-links hidden md:flex ">
-                    <a href="#about " class="hover:text-gray-300 transition ">About</a>
-                    <a href="#categories " class="hover:text-gray-300 transition ">Categories</a>
-                    <a href="#profiles " class="hover:text-gray-300 transition ">Profiles</a>
-                    <a href="#contact " class="hover:text-gray-300 transition ">Contact</a>
+                <div class="nav-links">
+                    <a href="#about" class="hover:text-gray-300 transition">About</a>
+                    <a href="#categories" class="hover:text-gray-300 transition">Categories</a>
+                    <a href="#profiles" class="hover:text-gray-300 transition">Profiles</a>
+                    <a href="#contact" class="hover:text-gray-300 transition">Contact</a>
                 </div>
-                <div class="menu-items " id="mobileMenu ">
-                    <a href="#about " class="block py-2 hover:text-gray-300 transition ">About</a>
-                    <a href="#categories " class="block py-2 hover:text-gray-300 transition ">Categories</a>
-                    <a href="#profiles " class="block py-2 hover:text-gray-300 transition ">Profiles</a>
-                    <a href="#contact " class="block py-2 hover:text-gray-300 transition ">Contact</a>
+                <div class="menu-items" id="mobileMenu">
+                    <a href="#about" class="block py-2 hover:text-gray-300 transition">About</a>
+                    <a href="#categories" class="block py-2 hover:text-gray-300 transition">Categories</a>
+                    <a href="#profiles" class="block py-2 hover:text-gray-300 transition">Profiles</a>
+                    <a href="#contact" class="block py-2 hover:text-gray-300 transition">Contact</a>
                 </div>
             </div>
         </div>
@@ -189,7 +193,7 @@
         <div class="relative z-10 px-4 ">
             <h1 class="text-4xl md:text-6xl font-bold mb-4 ">Hassan Faisal</h1>
             <p class="text-lg md:text-xl italic mb-8 ">Photographer & Visual Storyteller</p>
-            <a href="#categories " class="bg-white text-black px-8 py-3 rounded-full hover:bg-gray-200 transition ">View My Work</a>
+            <a href="#categories" class="bg-white text-black px-8 py-3 rounded-full hover:bg-gray-200 transition ">View My Work</a>
         </div>
     </section>
 
@@ -415,7 +419,8 @@
                     <div class="flex items-center mb-6 ">
                         <svg class="w-8 h-8 text-blue-400 mr-4 " fill="currentColor " viewBox="0 0 24 24 ">
                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5
-                    3.22-6 3.22z "/>
+                    3.22-6 3.22-6zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645
+                    1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z "/>
                         </svg>
                         <h3 class="text-2xl font-semibold ">Personal Profile</h3>
                     </div>
@@ -518,18 +523,38 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js "></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js "></script>
     <script>
+        // Add smooth scrolling to the entire document
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for all anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+
         function toggleGallery(category) {
             const collection = document.getElementById(`${category}-collection`);
             const button = event.currentTarget;
             const isHidden = !collection.classList.contains('active');
 
             // Hide all collections first
-            document.querySelectorAll('[id$="-collection "]').forEach(el => {
+            document.querySelectorAll('[id$="-collection"]').forEach(el => {
                 el.classList.remove('active');
             });
 
             // Reset all buttons
-            document.querySelectorAll('button[onclick^="toggleGallery "]').forEach(btn => {
+            document.querySelectorAll('button[onclick^="toggleGallery"]').forEach(btn => {
                 btn.querySelector('svg').style.transform = 'rotate(0deg)';
             });
 
@@ -569,7 +594,7 @@
         // Close mobile menu when clicking outside
         document.addEventListener('click', (e) => {
             const mobileMenu = document.getElementById('mobileMenu');
-            const mobileMenuButton = document.querySelector('.mobile-menu');
+            const mobileMenuButton = document.querySelector('.mobile-menu-btn');
             if (mobileMenu && mobileMenuButton &&
                 !mobileMenuButton.contains(e.target) &&
                 !mobileMenu.contains(e.target)) {
