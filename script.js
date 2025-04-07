@@ -172,6 +172,15 @@ function addInstagramToUniversitySociety() {
     }
 }
 
+// Improved mobile menu handling
+function toggleMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenu) {
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+}
+
 // Initialize everything when the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initGallery();

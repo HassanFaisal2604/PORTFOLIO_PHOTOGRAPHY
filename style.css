@@ -27,13 +27,30 @@ body {
 }
 
 
-/* Section Dividers - Reduced size */
+/* Section Dividers - Refined */
 
 .section-divider {
-    width: 100%;
+    width: 80%;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
-    margin: 1rem auto;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.15), transparent);
+    margin: 3rem auto;
+}
+
+
+/* Collection content display */
+
+.collection-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.5s ease;
+    opacity: 0;
+    margin-top: 0;
+}
+
+.collection-content.active {
+    max-height: 2000px;
+    opacity: 1;
+    margin-top: 2rem;
 }
 
 
